@@ -50,7 +50,7 @@ Item {
     property string uiHighlightColor: "#fddd5c"
     property string textFieldStrokeColor: "#3882ae"
     property string placeholderColor: "#a0a1a2"
-    property string defaultFontFamily: "Open Sans"
+    property string defaultFontFamily: "Roboto"
 
     property int animationDuration: 200
     property int velocityThreshold: 400
