@@ -36,7 +36,6 @@
 
 AppEngine::AppEngine(QObject *parent)
     : QObject(parent)
-    , m_settings(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) % QDir::separator() % "settings.ini", QSettings::IniFormat, this)
 {
     foreach (const QString &arg, QCoreApplication::arguments().mid(1)) {
         if (arg.startsWith('-'))
@@ -47,11 +46,6 @@ AppEngine::AppEngine(QObject *parent)
             break;
         }
     }
-}
-
-QString AppEngine::settingsPath()
-{
-    return m_settings.fileName();
 }
 
 QString AppEngine::initialUrl() const
@@ -82,26 +76,3 @@ QString AppEngine::domainFromString(const QString& urlString)
 {
     return QUrl::fromUserInput(urlString).host();
 }
-
-QString AppEngine::fallbackColor()
-{
-    static QList<QString> colors = QList<QString>() << QStringLiteral("#46a2da")
-                                                    << QStringLiteral("#18394c")
-                                                    << QStringLiteral("#ff8c0a")
-                                                    << QStringLiteral("#5caa15");
-    static int index = -1;
-    if (++index == colors.count())
-        index = 0;
-    return colors[index];
-}
-
-QString AppEngine::restoreSetting(const QString &name, const QString &defaultValue)
-{
-    return m_settings.value(name, defaultValue).toString();
-}
-
-void AppEngine::saveSetting(const QString &name, const QString &value)
-{
-    m_settings.setValue(name, value);
-}
-

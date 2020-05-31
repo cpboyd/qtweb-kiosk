@@ -28,7 +28,6 @@
 ****************************************************************************/
 
 #include "appengine.h"
-#include "navigationhistoryproxymodel.h"
 #include "touchtracker.h"
 
 #if defined(DESKTOP_BUILD)
@@ -77,7 +76,6 @@ int main(int argc, char **argv)
     QGuiApplication app(qAppArgCount, qargv.data());
 #endif
 
-    qmlRegisterType<NavigationHistoryProxyModel>("WebBrowser", 1, 0, "SearchProxyModel");
     qmlRegisterType<TouchTracker>("WebBrowser", 1, 0, "TouchTracker");
     qmlRegisterSingletonType<AppEngine>("WebBrowser", 1, 0, "AppEngine", engine_factory);
 

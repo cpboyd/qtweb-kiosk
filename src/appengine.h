@@ -68,24 +68,18 @@ inline bool isMouseEvent(const QEvent* event)
 class AppEngine : public QObject {
     Q_OBJECT
 
-    Q_PROPERTY(QString settingsPath READ settingsPath FINAL CONSTANT)
     Q_PROPERTY(QString initialUrl READ initialUrl FINAL CONSTANT)
 
 public:
     AppEngine(QObject *parent = 0);
 
-    QString settingsPath();
     QString initialUrl() const;
 
     Q_INVOKABLE bool isUrl(const QString& userInput);
     Q_INVOKABLE QUrl fromUserInput(const QString& userInput);
     Q_INVOKABLE QString domainFromString(const QString& urlString);
-    Q_INVOKABLE QString fallbackColor();
-    Q_INVOKABLE QString restoreSetting(const QString &name, const QString &defaultValue = QString());
-    Q_INVOKABLE void saveSetting(const QString &name, const QString &value);
 
 private:
-    QSettings m_settings;
     QString m_initialUrl;
 };
 
